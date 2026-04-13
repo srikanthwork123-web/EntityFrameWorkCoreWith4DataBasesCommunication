@@ -22,7 +22,7 @@ namespace EntityFrameWorkCore_CodeFirst_4DBCommunication.Repositories
             //AddAsync(Object)=>It will insert record into  resepective modelclass table.
             await _employeeContext.Employees.AddAsync(empdetail);
             
-            _employeeContext.SaveChanges();
+            _employeeContext.SaveChanges();//
             //SaveChanges() method used to save the data permenetly into table purpose used.
             //SaveChanges() is similar to sqlserver commit.commit means perminetly save the data into database.
             return 1;
@@ -31,6 +31,7 @@ namespace EntityFrameWorkCore_CodeFirst_4DBCommunication.Repositories
         public async Task<bool> DeleteEmployesById(int empid)
         {
             //to get the one record based on id we can go with firstorderaultasync () with where condition.
+            //sqlquery is:select * from employee where empid=2;
            Employee empObj=await _employeeContext.Employees.Where(a=>a.empid ==empid).FirstOrDefaultAsync();
             if (empObj != null)
             {
@@ -56,7 +57,7 @@ namespace EntityFrameWorkCore_CodeFirst_4DBCommunication.Repositories
 
         public async Task<List<Employee>> GetEmployees()
         {//ToList() method is used to fetch the total data from the table
-            var result = _employeeContext.Employees.ToList();
+            var result =await  _employeeContext.Employees.ToListAsync();
             if (result.Count == 0)
             {
                 return null;
