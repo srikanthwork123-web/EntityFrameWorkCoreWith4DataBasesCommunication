@@ -14,8 +14,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 //register your context class and pointing to your connectionstring
-//you should tell to ef core this context class is pointing to this database.
+//you should tell to entityframework core this context class is pointing to this database.
+////If you are not registered this context class in AddDbContext<> section  it will throw "Unable to reslove service type" Error.
 builder.Services.AddDbContext<EmployeeContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("EmployeeCodeFirstApproachDatabase")));
+builder.Services.AddDbContext<OrdersContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("OrdersCodeFirstApproachDatabase")));
 //To implement the depency Injection must and stood register the interfacename,interfaceimplemented class here.
 //If you are not registered it will throw "System.InvalidOpertionException:Unable to reslove service type" Error
 //These interfaces we are injecting into controller constructor,to  implement the loosely coupling between the classes
@@ -23,7 +25,9 @@ builder.Services.AddDbContext<EmployeeContext>(options => options.UseSqlServer(b
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 //=======================***************************************************************************
-
+builder.Services.AddScoped<IOrdersRepository, OrdersRepository>();
+builder.Services.AddScoped<IOrdersService, OrdersService>();
+//=========================*******************************************************************
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

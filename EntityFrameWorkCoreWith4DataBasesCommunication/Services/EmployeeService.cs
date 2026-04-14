@@ -17,6 +17,7 @@ namespace EntityFrameWorkCore_CodeFirst_4DBCommunication.Services
             emp.empid = empdetail.empid;
             emp.empsalary = empdetail.empsalary;
             emp.empname = empdetail.empname;
+           
             var res = await _employeeRepository.AddEmployes(emp);
             return res;
         }
@@ -34,6 +35,7 @@ namespace EntityFrameWorkCore_CodeFirst_4DBCommunication.Services
             empdto.empid = res.empid;
             empdto.empname = res.empname;
             empdto.empsalary = res.empsalary;
+           
             return empdto;
         }
 

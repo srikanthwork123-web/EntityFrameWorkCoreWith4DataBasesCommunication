@@ -70,7 +70,7 @@ namespace EntityFrameWorkCore_CodeFirst_4DBCommunication.Repositories
 
         public async Task<bool> UpdateEmploye(Employee empdetail)
         {
-            _employeeContext.Update(empdetail);
+            _employeeContext.Employees.Update(empdetail);
             await  _employeeContext.SaveChangesAsync();
             return true;
         }

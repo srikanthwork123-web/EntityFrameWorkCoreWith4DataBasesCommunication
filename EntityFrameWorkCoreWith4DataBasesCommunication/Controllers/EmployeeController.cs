@@ -125,3 +125,21 @@ namespace EntityFrameWorkCore_CodeFirst_4DBCommunication.Controllers
         }
     }
 }
+/*Can you please explain Entitty Frameworkcodefirst appraoch process?
+========================================================================
+ =>By using Codefirst approach we are generting the database and tables , based on entityclasses or model classes.
+ =>To implement Codefirst Approach first install 3 packages
+ 1.microsoft.entityframeworkcore(8.0.0)-- this version is used for .Net 8.0[ex:if u use .net6.0 version ,u will use entityframeworkcore (6.0.0)]
+ 2.microsoft.entityframeworkcore.sqlserver(8.0.0)--[package is used to communicate with a sql server database]
+ 3.microsoft.entityframeworkcore.tools(8.0.0)--[package is used to excute the entityframework core commands in package manager console window]
+======================
+=>Next creare the connection string in appsettings.json
+=>create the modelclasses/entity classes
+=>these entity classes register in the context class by using dbset<modelclassname>
+=>After that register your contextclassname in program.cs by using  builder.Services.AddDbContext<contextclassname>
+=>once you preapre these steps, after that we need to run 2 commands for generting the database.
+1.ADD-MIGRATION Migrationname  --command used to generate the migration folder.[which contains meta data of entity clases]
+2.UPDATE-DATABASE    --command is used to generate the database from developer side in .netcore
+NOTE:if u r not using these commands,database not generated.
+==================================
+ */
