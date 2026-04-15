@@ -125,21 +125,53 @@ namespace EntityFrameWorkCore_CodeFirst_4DBCommunication.Controllers
         }
     }
 }
-/*Can you please explain Entitty Frameworkcodefirst appraoch process?
+/*1.Can you please explain Entitty Frameworkcodefirst appraoch process?
 ========================================================================
  =>By using Codefirst approach we are generting the database and tables , based on entityclasses or model classes.
- =>To implement Codefirst Approach first install 3 packages
+ Step1:=>To implement Codefirst Approach first install 3 packages
  1.microsoft.entityframeworkcore(8.0.0)-- this version is used for .Net 8.0[ex:if u use .net6.0 version ,u will use entityframeworkcore (6.0.0)]
  2.microsoft.entityframeworkcore.sqlserver(8.0.0)--[package is used to communicate with a sql server database]
  3.microsoft.entityframeworkcore.tools(8.0.0)--[package is used to excute the entityframework core commands in package manager console window]
 ======================
-=>Next creare the connection string in appsettings.json
-=>create the modelclasses/entity classes
-=>these entity classes register in the context class by using dbset<modelclassname>
-=>After that register your contextclassname in program.cs by using  builder.Services.AddDbContext<contextclassname>
-=>once you preapre these steps, after that we need to run 2 commands for generting the database.
+Step2:=>Next creare the connection string in appsettings.json
+Step3:=>create the modelclasses/entity classes
+Step4:=>these entity classes register in the context class by using dbset<modelclassname>
+Step5:=>After that register your contextclassname in program.cs by using  builder.Services.AddDbContext<contextclassname>(place your connectionstring)
+Step6:=>once you preapre these steps, after that we need to run 2 commands for generting the database.
 1.ADD-MIGRATION Migrationname  --command used to generate the migration folder.[which contains meta data of entity clases]
 2.UPDATE-DATABASE    --command is used to generate the database from developer side in .netcore
 NOTE:if u r not using these commands,database not generated.
 ==================================
+
+
+2.for example if you have more than one context file is available  how you will apply the migrtions.can you explain the process?
+====================================================
+####################Facing Issues with Multiple Context Files#################################
+In your dotnet core project if you communicate with 3 databases ,you will get 3 Context files.if you want to update any context file you must specify context name.
+iF you want to communicate with multiple databases in dotnet core project  we need to fallow these rules.
+other wise you will face this below issue.
+
+====================multiple context class updation error====
+ERROR:More than one DbContext was found. Specify which one to use. 
+Use the '-Context' parameter for PowerShell commands and the '--context' parameter for dotnet commands.
+=======================To fix this above issue we fallowed below commands==============
+=============iF you want to communicate with multiple databases in dotnet core project  we need to fallow these rules.
+======syntax for code first approcah updations=======
+
+Add-Migration MigrationName -Context ContextClassName
+ 
+update-database -Context ContextClassName
+
+Note:
+1)Here Migration name you can give any migrationName.
+2)Make sure you need to mention the context classname.other wise it will throw the above error.
+ 
+===========Usageof CodeFirst approach updations=======
+ 
+Add-Migration Project -Context EmployeeManagementContext
+ 
+update-database -Context EmployeeManagementContext
+==================================================
+
+
  */

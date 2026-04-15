@@ -17,9 +17,10 @@ namespace EntityFrameWorkCore_CodeFirst_4DBCommunication.Repositories
         }
 
         public async Task<int> AddEmployes(Employee empdetail)
-        {
-            //TO implement ASYNCHRONOUS PROGRAMING USE ASYNC AND AWAIT KEWYORDS ALONG WITH TASK
-            //AddAsync(Object)=>It will insert record into  resepective modelclass table.
+        {     //All crud opertions related methods(like AdAsync(),update(),remove().....) comming from Dbset class.
+              //DbContext class provides savechanges() method.to save the data permenently.
+              //TO implement ASYNCHRONOUS PROGRAMING USE ASYNC AND AWAIT KEWYORDS ALONG WITH TASK
+              //AddAsync(Object)=>It will insert record into  resepective modelclass table.
             await _employeeContext.Employees.AddAsync(empdetail);
             
             _employeeContext.SaveChanges();//
